@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+}
+.tag-wrapper:hover:after{
+  content: 'CLICK TO DELETE';
+  position: absolute;
+  background: white;
+  border-radius: 12px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 6px black;
+  font-size: 10px;
+}

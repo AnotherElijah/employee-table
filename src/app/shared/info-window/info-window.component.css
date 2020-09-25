@@ -1,0 +1,14 @@
+.success{
+  background: white;
+  width: 50vw;
+  height: 20vh;
+  position: fixed;
+  z-index: 9;
+  top: 20vh;
+  left: 25vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: black 0px 3px 13px;
+}

@@ -1,0 +1,65 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add new worker
+      </mat-panel-title>
+      <mat-panel-description>
+        {{panelOpenState ? 'CLICK TO CLOSE' : 'CLICK TO OPEN'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+      <mat-form-field appearance="legacy">
+        <mat-label>First Name</mat-label>
+        <input name="firstName" matInput ngModel required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="legacy">
+        <mat-label>Second Name</mat-label>
+        <input name="secondName" matInput ngModel required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="legacy">
+        <mat-label>Tags</mat-label>
+        <mat-select (valueChange)="assignTags($event)">
+          <mat-option *ngFor="let tag of tags" [value]="tag">
+            <app-tag name={{tag.name}}></app-tag>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <div *ngIf="tagsChosen.length>0">
+        <app-tag class="tag" *ngFor="let tag of tagsChosen" name={{tag.name}} (click)="removeTag(tag)"></app-tag>
+      </div>
+      <br>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Office</mat-label>
+        <mat-select (valueChange)="officeValue = $event">
+          <mat-option *ngFor="let office of offices" [value]="office">
+            {{office}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Birth Date</mat-label>
+        <input name="birthDate" type="date" matInput ngModel required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="legacy">
+        <mat-label>Phone</mat-label>
+        <input name="phoneNumber" matInput ngModel required>
+      </mat-form-field>
+      <br>
+      <div class="form-submit-wrapper">
+        <button [disabled]="!form.valid||effect" class="form-submit" mat-button color="primary">SAVE</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<app-info-window *ngIf="showNotif" [text]="'Worker has been saved!'"></app-info-window>

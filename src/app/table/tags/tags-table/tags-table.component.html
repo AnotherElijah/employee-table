@@ -1,0 +1,39 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Edit tags
+      </mat-panel-title>
+      <mat-panel-description>
+        {{panelOpenState ? 'CLICK TO CLOSE' : 'CLICK TO OPEN'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="tags">
+          <th mat-header-cell *matHeaderCellDef>Tags</th>
+          <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions</th>
+          <td mat-cell *matCellDef="let item">
+            <button mat-button color="primary" (click)="deleteTag(item._id)">DELETE</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <div class="btn-wrapper">
+        <button mat-raised-button color="primary" *ngIf="!showCreateFrom" (click)="toggleShowCreateFrom()">Add new</button>
+        <button mat-raised-button *ngIf="showCreateFrom" (click)="toggleShowCreateFrom()">Close form</button>
+      </div>
+      <app-create-tag *ngIf="showCreateFrom" ></app-create-tag>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

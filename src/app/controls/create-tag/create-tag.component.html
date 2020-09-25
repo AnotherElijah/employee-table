@@ -1,0 +1,13 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+  <mat-form-field appearance="legacy">
+    <mat-label>Tag Name</mat-label>
+    <input name="name" matInput ngModel required>
+  </mat-form-field>
+  <br>
+  <div class="form-submit-wrapper">
+    <button [disabled]="!form.valid||effect" class="form-submit" mat-button color="primary">SAVE</button>
+  </div>
+</form>
+
+<app-info-window *ngIf="showNotif" [text]="'Tag has been saved!'"></app-info-window>
+
