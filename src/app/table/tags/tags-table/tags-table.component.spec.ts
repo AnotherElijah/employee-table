@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TagsTableComponent } from './tags-table.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('TagsTableComponent', () => {
   let component: TagsTableComponent;
@@ -8,7 +9,8 @@ describe('TagsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TagsTableComponent ]
+      declarations: [ TagsTableComponent ],
+      imports: [ HttpClientTestingModule ],
     })
     .compileComponents();
   });
